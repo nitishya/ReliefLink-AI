@@ -460,11 +460,8 @@ Next-generation emergency intelligence &amp; humanitarian response system. Built
 def show_intake_form():
     st.markdown('<div class="page-wrap">', unsafe_allow_html=True)
 
-    col_l, col_m, col_r = st.columns([0.5, 10, 0.5])
-    with col_m:
-
-        # Hero card — NO indentation in the HTML string
-        st.markdown('''<div class="card">
+    # Hero card — NO indentation in the HTML string
+    st.markdown('''<div class="card">
 <h2 style="margin:0 0 8px 0; color:white; font-size:1.8rem; font-weight:800;">Report an Emergency</h2>
 <p style="margin:0 0 28px 0; color:#94a3b8; font-size:0.95rem;">
 Fill out the form below. Our AI will instantly classify your situation, estimate urgency, and notify the nearest response teams.
@@ -478,51 +475,51 @@ Fill out the form below. Our AI will instantly classify your situation, estimate
 </div>
 </div>''', unsafe_allow_html=True)
 
-        with st.form("intake_form", clear_on_submit=True):
-            c1, c2 = st.columns(2)
-            with c1:
-                name = st.text_input("Full Name", placeholder="e.g. Priya Sharma")
-                contact = st.text_input("Phone Number", placeholder="e.g. +91 98765 43210")
-            with c2:
-                location = st.text_input("Location", placeholder="e.g. Sector 45, Gurgaon, Haryana")
-                language = st.selectbox("Preferred Language", ["English", "Hindi", "Spanish", "French"])
+    with st.form("intake_form", clear_on_submit=True):
+        c1, c2 = st.columns(2)
+        with c1:
+            name = st.text_input("Full Name", placeholder="e.g. Priya Sharma")
+            contact = st.text_input("Phone Number", placeholder="e.g. +91 98765 43210")
+        with c2:
+            location = st.text_input("Location", placeholder="e.g. Sector 45, Gurgaon, Haryana")
+            language = st.selectbox("Preferred Language", ["English", "Hindi", "Spanish", "French"])
 
-            description = st.text_area(
-                "Describe the Situation",
-                placeholder="What happened? How many people are affected? What supplies are needed (food, water, medical aid, shelter)?",
-                height=180
-            )
+        description = st.text_area(
+            "Describe the Situation",
+            placeholder="What happened? How many people are affected? What supplies are needed (food, water, medical aid, shelter)?",
+            height=180
+        )
 
-            st.markdown("<br>", unsafe_allow_html=True)
-            submitted = st.form_submit_button("Submit Emergency Request")
+        st.markdown("<br>", unsafe_allow_html=True)
+        submitted = st.form_submit_button("Submit Emergency Request")
 
-            if submitted:
-                if not name or not location or not description or not contact:
-                    st.error("Please fill in all fields before submitting.")
-                else:
-                    payload = {
-                        "name": name,
-                        "location": location,
-                        "description": description,
-                        "contact_number": contact,
-                        "language": language
-                    }
-                    try:
-                        with st.spinner("Processing your request …"):
-                            response = requests.post(f"{API_BASE_URL}/requests/", json=payload)
-                        if response.status_code == 200:
-                            st.session_state.last_submission = response.json()
-                            st.balloons()
-                        else:
-                            st.error(f"Something went wrong: {response.text}")
-                    except Exception:
-                        st.error("Unable to reach the server. Please check that the backend is running.")
+        if submitted:
+            if not name or not location or not description or not contact:
+                st.error("Please fill in all fields before submitting.")
+            else:
+                payload = {
+                    "name": name,
+                    "location": location,
+                    "description": description,
+                    "contact_number": contact,
+                    "language": language
+                }
+                try:
+                    with st.spinner("Processing your request …"):
+                        response = requests.post(f"{API_BASE_URL}/requests/", json=payload)
+                    if response.status_code == 200:
+                        st.session_state.last_submission = response.json()
+                        st.balloons()
+                    else:
+                        st.error(f"Something went wrong: {response.text}")
+                except Exception:
+                    st.error("Unable to reach the server. Please check that the backend is running.")
 
-        # ── AI Results (rendered OUTSIDE the form, no indentation) ──
-        if st.session_state.get('last_submission'):
-            data = st.session_state.last_submission
-            urgency_class = data['urgency'].lower()
-            results_html = f'''<div class="card" style="border-color:rgba(16,185,129,0.3); margin-top:32px;">
+    # ── AI Results (rendered OUTSIDE the form, no indentation) ──
+    if st.session_state.get('last_submission'):
+        data = st.session_state.last_submission
+        urgency_class = data['urgency'].lower()
+        results_html = f'''<div class="card" style="border-color:rgba(16,185,129,0.3); margin-top:32px;">
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
 <h3 style="margin:0; color:#10b981; font-weight:700;">Request Processed Successfully</h3>
 <span class="badge badge-{urgency_class}">{data['urgency']} Priority</span>
@@ -545,10 +542,10 @@ Fill out the form below. Our AI will instantly classify your situation, estimate
 {data['recommendations']}
 </div>
 </div>'''
-            st.markdown(results_html, unsafe_allow_html=True)
-            if st.button("Dismiss"):
-                st.session_state.last_submission = None
-                st.rerun()
+        st.markdown(results_html, unsafe_allow_html=True)
+        if st.button("Dismiss"):
+            st.session_state.last_submission = None
+            st.rerun()
 
     st.markdown('</div>', unsafe_allow_html=True)
 

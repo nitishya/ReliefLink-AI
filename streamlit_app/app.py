@@ -91,11 +91,29 @@ st.markdown("""
         background: rgba(255,255,255,0.08);
         color: white;
     }
-    /* Hide default Streamlit sidebar toggle completely */
-    button[data-testid="stSidebarCollapseButton"],
+    /* Custom Hamburger for Sidebar Toggle */
+    button[data-testid="stSidebarCollapseButton"] {
+        background: transparent !important;
+        border: 1px solid var(--border) !important;
+        border-radius: 8px !important;
+        width: 36px !important;
+        height: 36px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    button[data-testid="stSidebarCollapseButton"]::after {
+        content: "☰";
+        font-size: 18px;
+        color: var(--text-secondary);
+        position: absolute;
+    }
     button[data-testid="stSidebarCollapseButton"] svg {
         display: none !important;
-        visibility: hidden !important;
+    }
+    button[data-testid="stSidebarCollapseButton"]:hover {
+        background: rgba(255,255,255,0.05) !important;
+        border-color: var(--border-hover) !important;
     }
 
     /* ── Topbar Navigation Links ── */
@@ -149,6 +167,16 @@ st.markdown("""
         margin-right: auto;
     }
     .card:hover { border-color: var(--border-hover); }
+
+    /* Match Streamlit Form width and styling to our custom cards */
+    [data-testid="stForm"] {
+        border: 1px solid var(--border) !important;
+        border-radius: 16px !important;
+        background: var(--bg-card) !important;
+        padding: 36px !important;
+        max-width: 1100px !important;
+        margin: 0 auto !important;
+    }
 
     .metric-card {
         background: var(--bg-card);
@@ -409,6 +437,7 @@ def show_footer():
     st.markdown("""
 <div class="site-footer">
 <div class="footer-main">
+<div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
 <div>
 <div style="font-weight:800; font-size:1.05rem; color:white; display:flex; align-items:center; gap:8px; margin-bottom:12px;">
 <span style="font-size:1.2rem;">🆘</span> ReliefLink AI
@@ -416,20 +445,27 @@ def show_footer():
 <p class="footer-text" style="margin-bottom:24px;">
 Next-generation emergency intelligence &amp; humanitarian response system. Built to optimize disaster relief coordination and enhance real-time aid delivery.
 </p>
+</div>
+<div>
 <div class="footer-heading" style="margin-bottom:10px;">Connect</div>
 <div style="display:flex; gap:16px;">
 <a href="https://www.linkedin.com/in/nitishyadav866" target="_blank" class="footer-link" style="margin:0;">🔗 LinkedIn</a>
 <a href="https://github.com/nitishya/ReliefLink-AI" target="_blank" class="footer-link" style="margin:0;">🐙 GitHub</a>
 </div>
 </div>
-<div style="text-align:right;">
+</div>
+<div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; text-align:right;">
+<div>
 <div class="footer-heading">Developed by</div>
 <p style="color:white; font-size:1rem; font-weight:700; margin:0 0 4px 0;">Team 10:Nitish,Saurabh,Sachin and Ishita</p>
 <p style="color:var(--text-dim); font-size:0.82rem; margin:0 0 24px 0;">Delhi, India 🇮🇳</p>
+</div>
+<div>
 <div class="footer-heading" style="margin-bottom:10px;">Legal</div>
 <div style="display:flex; gap:16px; justify-content:flex-end;">
 <a href="#" class="footer-link" style="margin:0;">Privacy Policy</a>
 <a href="#" class="footer-link" style="margin:0;">Terms of Service</a>
+</div>
 </div>
 </div>
 </div>

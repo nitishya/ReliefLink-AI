@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Global Food Relief",
+        "category": "Food shortage",
+        "contact": "+1-800-FOOD-HELP",
+        "location": "Global"
+    },
+    {
+        "name": "Swift Rescue Squad",
+        "category": "Flood rescue",
+        "contact": "+1-800-RESCUE-1",
+        "location": "Global"
+    },
+    {
+        "name": "Care for Elders",
+        "category": "Elderly assistance",
+        "contact": "+1-800-ELDER-CARE",
+        "location": "Global"
+    },
+    {
+        "name": "City Medical Center",
+        "category": "Medical emergency",
+        "contact": "911 (Emergency)",
+        "location": "Global"
+    }
+]

@@ -12,7 +12,7 @@ st.set_page_config(
     page_title="ReliefLink AI — Emergency Response Platform",
     page_icon="🆘",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 # ── DESIGN SYSTEM CSS ──

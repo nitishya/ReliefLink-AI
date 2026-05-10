@@ -213,33 +213,35 @@ st.markdown("""
 
     /* ── Footer ── */
     .site-footer {
+        background: var(--bg-secondary);
         border-top: 1px solid var(--border);
-        padding: 48px 48px 28px 48px;
+        padding: 40px 48px 0 48px;
         margin-top: 60px;
     }
-    .footer-grid {
+    .footer-main {
         display: grid;
-        grid-template-columns: 1.6fr 1fr 1fr;
+        grid-template-columns: 1.4fr 1fr 1fr;
         gap: 48px; max-width: 1100px; margin: 0 auto;
+        padding-bottom: 32px;
     }
     .footer-heading {
         font-size: 0.78rem; font-weight: 700; color: var(--text);
         text-transform: uppercase; letter-spacing: 0.08em;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
     }
     .footer-text {
-        color: var(--text-dim); font-size: 0.82rem;
-        line-height: 1.65; margin: 0;
+        color: var(--text-dim); font-size: 0.8rem;
+        line-height: 1.7; margin: 0;
     }
     .footer-link {
         display: block; color: var(--text-secondary);
         text-decoration: none; font-size: 0.82rem;
-        margin-bottom: 10px; transition: color 0.2s;
+        margin-bottom: 8px; transition: color 0.2s;
     }
-    .footer-link:hover { color: var(--text); }
-    .footer-divider {
-        max-width: 1100px; margin: 32px auto 0 auto;
-        padding-top: 20px;
+    .footer-link:hover { color: white; }
+    .footer-bottom {
+        max-width: 1100px; margin: 0 auto;
+        padding: 20px 0;
         border-top: 1px solid var(--border);
         display: flex; justify-content: space-between; align-items: center;
         font-size: 0.72rem; color: var(--text-dim);
@@ -316,30 +318,33 @@ def show_sidebar():
 def show_footer():
     st.markdown("""
 <div class="site-footer">
-<div class="footer-grid">
+<div class="footer-main">
 <div>
-<div style="font-weight:700; font-size:1rem; color:white; display:flex; align-items:center; gap:8px; margin-bottom:12px;">
-<span style="font-size:1.1rem;">🆘</span> ReliefLink AI
+<div style="font-weight:800; font-size:1.05rem; color:white; display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+<span style="font-size:1.2rem;">🆘</span> ReliefLink AI
 </div>
 <p class="footer-text">
-An open-source emergency response platform that uses artificial intelligence to classify, prioritize, and coordinate humanitarian relief in real time.
+Next-generation emergency intelligence &amp; humanitarian response system. Built to optimize disaster relief coordination and enhance real-time aid delivery.
 </p>
 </div>
 <div>
-<div class="footer-heading">Platform</div>
-<a href="#" class="footer-link">Submit a Request</a>
-<a href="#" class="footer-link">Response Dashboard</a>
-<a href="#" class="footer-link">Documentation</a>
-<a href="#" class="footer-link">Help Center</a>
+<div class="footer-heading">Connect</div>
+<a href="https://www.linkedin.com/in/nitishyadav866" target="_blank" class="footer-link">🔗 LinkedIn</a>
+<a href="https://github.com/nitishya/ReliefLink-AI" target="_blank" class="footer-link">🐙 GitHub</a>
+<div style="margin-top:20px;">
+<div class="footer-heading">Legal</div>
+<a href="#" class="footer-link">Privacy Policy</a>
+<a href="#" class="footer-link">Terms of Service</a>
+</div>
 </div>
 <div style="text-align:right;">
-<div class="footer-heading">Contact</div>
-<p style="color:white; font-size:0.85rem; margin:0 0 6px 0; font-weight:600;">support@relieflink.ai</p>
-<p style="color:#10b981; font-size:0.72rem; font-weight:700; letter-spacing:0.06em;">MONITORING ACTIVE 24 / 7</p>
+<div class="footer-heading">Developed by</div>
+<p style="color:white; font-size:1rem; font-weight:700; margin:0 0 6px 0;">Nitish and Team</p>
+<p style="color:var(--text-dim); font-size:0.82rem; margin:0;">Delhi, India 🇮🇳</p>
 </div>
 </div>
-<div class="footer-divider">
-<span>&copy; 2026 ReliefLink AI &mdash; All rights reserved.</span>
+<div class="footer-bottom">
+<span>&copy; 2026 ReliefLink AI. All rights reserved.</span>
 <span style="font-weight:600;">Built for the AI for Social Good Challenge</span>
 </div>
 </div>

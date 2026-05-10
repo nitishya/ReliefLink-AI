@@ -112,6 +112,9 @@ st.markdown("""
         padding: 36px;
         margin-bottom: 28px;
         transition: border-color 0.25s ease;
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
     }
     .card:hover { border-color: var(--border-hover); }
 
@@ -254,6 +257,47 @@ st.markdown("""
 
     /* ── Streamlit dataframe dark theme ── */
     .stDataFrame { border-radius: 12px; overflow: hidden; }
+
+    /* ── RESPONSIVENESS ── */
+    @media (max-width: 1024px) {
+        .topbar { padding: 0 24px; }
+        .site-footer { padding: 40px 24px 0 24px; }
+        .footer-main { gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+        .topbar-status { display: none; }
+        .topbar-brand span:last-child { font-size: 0.85rem; }
+        .topbar-link { padding: 16px 10px; font-size: 0.75rem; }
+        
+        .footer-main {
+            grid-template-columns: 1fr;
+            gap: 32px;
+            text-align: center;
+        }
+        .footer-main > div:last-child {
+            text-align: center !important;
+            margin-top: 10px;
+        }
+        .footer-bottom {
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+        }
+        .card { padding: 24px; }
+        .page-wrap { margin-top: 70px; }
+        
+        .metric-value { font-size: 1.5rem; }
+        .metric-card { padding: 20px; }
+    }
+
+    @media (max-width: 480px) {
+        .topbar-brand span:last-child { display: none; }
+        .topbar { justify-content: center; padding: 0 10px; height: auto; padding: 10px 0; }
+        .topbar-link { padding: 8px 12px; }
+        .footer-main { padding-bottom: 24px; }
+        .site-footer { padding-top: 30px; }
+    }
 </style>
 """, unsafe_allow_html=True)
 

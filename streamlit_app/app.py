@@ -141,7 +141,6 @@ st.markdown("""
     }
     header[data-testid="stHeader"] { display: none !important; }
 
-    /* ── Cards ── */
     .card {
         background: var(--bg-card);
         border: 1px solid var(--border);
@@ -149,7 +148,8 @@ st.markdown("""
         padding: 36px;
         margin-bottom: 28px;
         transition: border-color 0.25s ease;
-        max-width: 1100px;
+        width: 100% !important;
+        max-width: 100% !important;
         margin-left: auto;
         margin-right: auto;
     }
@@ -161,7 +161,8 @@ st.markdown("""
         border-radius: 16px !important;
         background: var(--bg-card) !important;
         padding: 36px !important;
-        max-width: 1100px !important;
+        width: 100% !important;
+        max-width: 100% !important;
         margin: 0 auto !important;
     }
 
@@ -271,7 +272,10 @@ st.markdown("""
     .footer-main {
         display: grid;
         grid-template-columns: 1.2fr 1fr;
-        gap: 60px; max-width: 1100px; margin: 0 auto;
+        gap: 60px; 
+        width: 100% !important; 
+        max-width: 100% !important; 
+        margin: 0 auto;
         padding-bottom: 32px;
     }
     .footer-heading {
@@ -290,7 +294,9 @@ st.markdown("""
     }
     .footer-link:hover { color: white; }
     .footer-bottom {
-        max-width: 1100px; margin: 0 auto;
+        width: 100% !important; 
+        max-width: 100% !important; 
+        margin: 0 auto;
         padding: 20px 0;
         border-top: 1px solid var(--border);
         display: flex; justify-content: space-between; align-items: center;

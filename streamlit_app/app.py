@@ -74,28 +74,33 @@ st.markdown("""
         letter-spacing: 0.5px; text-transform: uppercase;
     }
 
-    .hamburger {
-        cursor: pointer;
-        font-size: 1.2rem;
+    /* ── Native Streamlit Sidebar Toggle Override (Hamburger) ── */
+    [data-testid="collapsedControl"] svg,
+    button[data-testid="stSidebarCollapseButton"] svg {
+        display: none !important;
+    }
+    
+    [data-testid="collapsedControl"]::before,
+    button[data-testid="stSidebarCollapseButton"]::before {
+        content: "☰";
+        font-size: 24px;
         color: var(--text-secondary);
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
-        transition: all 0.2s;
-        margin-right: 8px;
+        width: 100%;
+        height: 100%;
+        transition: color 0.2s ease;
     }
-    .hamburger:hover {
-        background: rgba(255,255,255,0.08);
+    
+    [data-testid="collapsedControl"]:hover::before,
+    button[data-testid="stSidebarCollapseButton"]:hover::before {
         color: white;
     }
-    /* Hide default Streamlit sidebar toggle completely */
-    button[data-testid="stSidebarCollapseButton"],
-    button[data-testid="stSidebarCollapseButton"] svg {
-        display: none !important;
-        visibility: hidden !important;
+
+    button[data-testid="stSidebarCollapseButton"] {
+        background: transparent !important;
+        border: none !important;
     }
 
     /* ── Topbar Navigation Links ── */
@@ -149,6 +154,16 @@ st.markdown("""
         margin-right: auto;
     }
     .card:hover { border-color: var(--border-hover); }
+
+    /* Match Streamlit Form width and styling to our custom cards */
+    [data-testid="stForm"] {
+        border: 1px solid var(--border) !important;
+        border-radius: 16px !important;
+        background: var(--bg-card) !important;
+        padding: 36px !important;
+        max-width: 1100px !important;
+        margin: 0 auto !important;
+    }
 
     .metric-card {
         background: var(--bg-card);
@@ -349,7 +364,6 @@ def show_navbar():
     st.markdown(f"""
 <div class="topbar">
 <div style="display:flex; align-items:center;">
-    <div class="hamburger" id="nav-hamburger">☰</div>
     <div class="topbar-brand">
         <span style="font-size:1.3rem">🆘</span>
         <span>ReliefLink AI</span>
@@ -365,16 +379,6 @@ def show_navbar():
 <span class="status-label">All Systems Operational</span>
 </div>
 </div>
-
-<script>
-    const hamburger = window.parent.document.getElementById('nav-hamburger');
-    if (hamburger) {{
-        hamburger.addEventListener('click', function() {{
-            const stButton = window.parent.document.querySelector('button[data-testid="stSidebarCollapseButton"]');
-            if (stButton) stButton.click();
-        }});
-    }}
-</script>
 """, unsafe_allow_html=True)
 
 

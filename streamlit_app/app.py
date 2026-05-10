@@ -223,8 +223,8 @@ st.markdown("""
     }
     .footer-main {
         display: grid;
-        grid-template-columns: 1.4fr 1fr 1fr;
-        gap: 48px; max-width: 1100px; margin: 0 auto;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 60px; max-width: 1100px; margin: 0 auto;
         padding-bottom: 32px;
     }
     .footer-heading {
@@ -365,32 +365,33 @@ def show_footer():
 <div class="site-footer">
 <div class="footer-main">
 <div>
-<div style="font-weight:800; font-size:1.05rem; color:white; display:flex; align-items:center; gap:8px; margin-bottom:12px;">
-<span style="font-size:1.2rem;">🆘</span> ReliefLink AI
-</div>
-<p class="footer-text">
-Next-generation emergency intelligence &amp; humanitarian response system. Built to optimize disaster relief coordination and enhance real-time aid delivery.
-</p>
-</div>
-<div>
-<div class="footer-heading">Connect</div>
-<a href="https://www.linkedin.com/in/nitishyadav866" target="_blank" class="footer-link">🔗 LinkedIn</a>
-<a href="https://github.com/nitishya/ReliefLink-AI" target="_blank" class="footer-link">🐙 GitHub</a>
-<div style="margin-top:20px;">
-<div class="footer-heading">Legal</div>
-<a href="#" class="footer-link">Privacy Policy</a>
-<a href="#" class="footer-link">Terms of Service</a>
-</div>
+    <div style="font-weight:800; font-size:1.05rem; color:white; display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+        <span style="font-size:1.2rem;">🆘</span> ReliefLink AI
+    </div>
+    <p class="footer-text" style="margin-bottom:24px;">
+        Next-generation emergency intelligence &amp; humanitarian response system. Built to optimize disaster relief coordination and enhance real-time aid delivery.
+    </p>
+    <div class="footer-heading" style="margin-bottom:10px;">Connect</div>
+    <div style="display:flex; gap:16px;">
+        <a href="https://www.linkedin.com/in/nitishyadav866" target="_blank" class="footer-link" style="margin:0;">🔗 LinkedIn</a>
+        <a href="https://github.com/nitishya/ReliefLink-AI" target="_blank" class="footer-link" style="margin:0;">🐙 GitHub</a>
+    </div>
 </div>
 <div style="text-align:right;">
-<div class="footer-heading">Developed by</div>
-<p style="color:white; font-size:1rem; font-weight:700; margin:0 0 6px 0;">Team 10:Nitish,Saurabh,Sachin and Ishita</p>
-<p style="color:var(--text-dim); font-size:0.82rem; margin:0;">Delhi, India 🇮🇳</p>
+    <div class="footer-heading">Developed by</div>
+    <p style="color:white; font-size:1rem; font-weight:700; margin:0 0 4px 0;">Team 10:Nitish,Saurabh,Sachin and Ishita</p>
+    <p style="color:var(--text-dim); font-size:0.82rem; margin:0 0 24px 0;">Delhi, India 🇮🇳</p>
+    
+    <div class="footer-heading" style="margin-bottom:10px;">Legal</div>
+    <div style="display:flex; gap:16px; justify-content:flex-end;">
+        <a href="#" class="footer-link" style="margin:0;">Privacy Policy</a>
+        <a href="#" class="footer-link" style="margin:0;">Terms of Service</a>
+    </div>
 </div>
 </div>
 <div class="footer-bottom">
-<span>&copy; 2026 ReliefLink AI. All rights reserved.</span>
-<span style="font-weight:600;">Built for the AI for Social Good Challenge</span>
+    <span>&copy; 2026 ReliefLink AI. All rights reserved.</span>
+    <span style="font-weight:600;">Built for the AI for Social Good Challenge</span>
 </div>
 </div>
 """, unsafe_allow_html=True)

@@ -91,9 +91,11 @@ st.markdown("""
         background: rgba(255,255,255,0.08);
         color: white;
     }
-    /* Hide default Streamlit sidebar toggle */
-    button[data-testid="stSidebarCollapseButton"] {
+    /* Hide default Streamlit sidebar toggle completely */
+    button[data-testid="stSidebarCollapseButton"],
+    button[data-testid="stSidebarCollapseButton"] svg {
         display: none !important;
+        visibility: hidden !important;
     }
 
     /* ── Topbar Navigation Links ── */
@@ -124,7 +126,15 @@ st.markdown("""
     }
 
     /* ── Page Content Spacing ── */
-    .page-wrap { margin-top: 80px; padding-bottom: 60px; }
+    .page-wrap { margin-top: 10px; padding-bottom: 40px; }
+    
+    /* Reduce Streamlit's default padding */
+    [data-testid="stAppViewBlockContainer"] {
+        padding-top: 0 !important;
+        padding-bottom: 2rem !important;
+        max-width: 100% !important;
+    }
+    header[data-testid="stHeader"] { display: none !important; }
 
     /* ── Cards ── */
     .card {

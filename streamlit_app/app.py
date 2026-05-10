@@ -150,16 +150,6 @@ st.markdown("""
     }
     .card:hover { border-color: var(--border-hover); }
 
-    /* Match Streamlit Form width and styling to our custom cards */
-    [data-testid="stForm"] {
-        border: 1px solid var(--border) !important;
-        border-radius: 16px !important;
-        background: var(--bg-card) !important;
-        padding: 36px !important;
-        max-width: 1100px !important;
-        margin: 0 auto !important;
-    }
-
     .metric-card {
         background: var(--bg-card);
         border: 1px solid var(--border);

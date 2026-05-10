@@ -80,6 +80,15 @@ st.markdown("""
         display: none !important;
     }
     
+    [data-testid="collapsedControl"],
+    button[data-testid="stSidebarCollapseButton"] {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+    }
+
     [data-testid="collapsedControl"]::before,
     button[data-testid="stSidebarCollapseButton"]::before {
         content: "☰";
@@ -91,6 +100,7 @@ st.markdown("""
         width: 100%;
         height: 100%;
         transition: color 0.2s ease;
+        pointer-events: none; /* Let clicks pass directly to the Streamlit element */
     }
     
     [data-testid="collapsedControl"]:hover::before,

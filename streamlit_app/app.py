@@ -74,29 +74,28 @@ st.markdown("""
         letter-spacing: 0.5px; text-transform: uppercase;
     }
 
-    /* Custom Hamburger for Sidebar Toggle */
-    button[data-testid="stSidebarCollapseButton"] {
-        background: transparent !important;
-        border: 1px solid var(--border) !important;
-        border-radius: 8px !important;
-        width: 36px !important;
-        height: 36px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-    button[data-testid="stSidebarCollapseButton"]::after {
-        content: "☰";
-        font-size: 18px;
+    .hamburger {
+        cursor: pointer;
+        font-size: 1.2rem;
         color: var(--text-secondary);
-        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        transition: all 0.2s;
+        margin-right: 8px;
     }
+    .hamburger:hover {
+        background: rgba(255,255,255,0.08);
+        color: white;
+    }
+    /* Hide default Streamlit sidebar toggle completely */
+    button[data-testid="stSidebarCollapseButton"],
     button[data-testid="stSidebarCollapseButton"] svg {
         display: none !important;
-    }
-    button[data-testid="stSidebarCollapseButton"]:hover {
-        background: rgba(255,255,255,0.05) !important;
-        border-color: var(--border-hover) !important;
+        visibility: hidden !important;
     }
 
     /* ── Topbar Navigation Links ── */
@@ -206,16 +205,6 @@ st.markdown("""
         letter-spacing: 0.05em !important;
     }
 
-    /* ── Streamlit Form Styling (Match Cards) ── */
-    [data-testid="stForm"] {
-        background: var(--bg-card) !important;
-        border: 1px solid var(--border) !important;
-        border-radius: 16px !important;
-        padding: 40px !important;
-        max-width: 1100px !important;
-        margin: 0 auto !important;
-    }
-    
     /* ── Primary Action Button ── */
     .stButton > button {
         background: var(--red) !important;
@@ -360,6 +349,7 @@ def show_navbar():
     st.markdown(f"""
 <div class="topbar">
 <div style="display:flex; align-items:center;">
+    <div class="hamburger" id="nav-hamburger">☰</div>
     <div class="topbar-brand">
         <span style="font-size:1.3rem">🆘</span>
         <span>ReliefLink AI</span>
@@ -375,6 +365,16 @@ def show_navbar():
 <span class="status-label">All Systems Operational</span>
 </div>
 </div>
+
+<script>
+    const hamburger = window.parent.document.getElementById('nav-hamburger');
+    if (hamburger) {{
+        hamburger.addEventListener('click', function() {{
+            const stButton = window.parent.document.querySelector('button[data-testid="stSidebarCollapseButton"]');
+            if (stButton) stButton.click();
+        }});
+    }}
+</script>
 """, unsafe_allow_html=True)
 
 
@@ -450,21 +450,23 @@ def show_intake_form():
 
     col_l, col_m, col_r = st.columns([0.5, 10, 0.5])
     with col_m:
-        with st.form("intake_form", clear_on_submit=True):
-            # Header inside the form for perfect width alignment
-            st.markdown('''
+
+        # Hero card — NO indentation in the HTML string
+        st.markdown('''<div class="card">
 <h2 style="margin:0 0 8px 0; color:white; font-size:1.8rem; font-weight:800;">Report an Emergency</h2>
 <p style="margin:0 0 28px 0; color:#94a3b8; font-size:0.95rem;">
 Fill out the form below. Our AI will instantly classify your situation, estimate urgency, and notify the nearest response teams.
 </p>
-<div style="background:var(--red-dim); border:1px solid rgba(239,68,68,0.18); border-radius:10px; padding:16px 20px; display:flex; gap:16px; align-items:center; margin-bottom:32px;">
+<div style="background:var(--red-dim); border:1px solid rgba(239,68,68,0.18); border-radius:10px; padding:16px 20px; display:flex; gap:16px; align-items:center;">
 <span style="font-size:1.4rem;">🛡️</span>
 <div>
 <p style="margin:0; color:white; font-weight:600; font-size:0.9rem;">Round-the-Clock Response</p>
 <p style="margin:0; color:#94a3b8; font-size:0.82rem;">Our AI continuously monitors incoming requests and can triage them in under two seconds.</p>
 </div>
+</div>
 </div>''', unsafe_allow_html=True)
 
+        with st.form("intake_form", clear_on_submit=True):
             c1, c2 = st.columns(2)
             with c1:
                 name = st.text_input("Full Name", placeholder="e.g. Priya Sharma")

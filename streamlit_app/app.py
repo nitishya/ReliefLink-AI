@@ -74,6 +74,28 @@ st.markdown("""
         letter-spacing: 0.5px; text-transform: uppercase;
     }
 
+    .hamburger {
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        transition: all 0.2s;
+        margin-right: 8px;
+    }
+    .hamburger:hover {
+        background: rgba(255,255,255,0.08);
+        color: white;
+    }
+    /* Hide default Streamlit sidebar toggle */
+    button[data-testid="stSidebarCollapseButton"] {
+        display: none !important;
+    }
+
     /* ── Topbar Navigation Links ── */
     .topbar-link {
         color: var(--text-secondary);
@@ -316,9 +338,12 @@ def show_navbar():
 
     st.markdown(f"""
 <div class="topbar">
-<div class="topbar-brand">
-<span style="font-size:1.3rem">🆘</span>
-<span>ReliefLink AI</span>
+<div style="display:flex; align-items:center;">
+    <div class="hamburger" id="nav-hamburger">☰</div>
+    <div class="topbar-brand">
+        <span style="font-size:1.3rem">🆘</span>
+        <span>ReliefLink AI</span>
+    </div>
 </div>
 <div style="display:flex; align-items:center; gap:6px; height:56px;">
 <a class="topbar-link" href="?page=home" target="_self" style="{active_home}">Submit Request</a>
@@ -330,6 +355,16 @@ def show_navbar():
 <span class="status-label">All Systems Operational</span>
 </div>
 </div>
+
+<script>
+    const hamburger = window.parent.document.getElementById('nav-hamburger');
+    if (hamburger) {{
+        hamburger.addEventListener('click', function() {{
+            const stButton = window.parent.document.querySelector('button[data-testid="stSidebarCollapseButton"]');
+            if (stButton) stButton.click();
+        }});
+    }}
+</script>
 """, unsafe_allow_html=True)
 
 

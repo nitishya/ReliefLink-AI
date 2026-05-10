@@ -340,7 +340,7 @@ Next-generation emergency intelligence &amp; humanitarian response system. Built
 </div>
 <div style="text-align:right;">
 <div class="footer-heading">Developed by</div>
-<p style="color:white; font-size:1rem; font-weight:700; margin:0 0 6px 0;">Nitish and Team 10</p>
+<p style="color:white; font-size:1rem; font-weight:700; margin:0 0 6px 0;">Team 10:Nitish,Saurabh,Sachin and Ishita</p>
 <p style="color:var(--text-dim); font-size:0.82rem; margin:0;">Delhi, India 🇮🇳</p>
 </div>
 </div>
